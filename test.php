@@ -1,32 +1,42 @@
 <?php
-$i = 1;
-while ($i <= 5) {
-    echo "Number: $i <br>";
-    $i++;
+
+$numbers = [];
+for ($i = 1; $i <= 10; $i++) {
+    $numbers[] = $i; 
 }
 
-echo "<br>";
-
-$j = 1;
-do {
-    echo "Value: $j <br>";
-    $j++;
-} while ($j <= 3);
-
-echo "<br>";
-
-for ($k = 1; $k <= 5; $k++) {
-    echo "Count: $k <br>";
-}
-
+echo "Array initialized using FOR loop:<br>";
+print_r($numbers);
 echo "<br>";
 
 
-$age = 20;
-if ($age >= 18) {
-    echo "You are eligible to vote.<br>";
-} else {
-    echo "You are not eligible to vote.<br>";
+echo "Displaying numbers:<br>";
+foreach ($numbers as $num) {
+    if ($num % 2 == 0) {
+        echo "Number $num is EVEN<br>";
+    } else {
+        echo "Number $num is ODD<br>";
+    }
 }
+echo "<br>";
 
+
+echo "Even numbers:<br>";
+foreach ($numbers as $num) {
+    if ($num % 2 != 0) {
+        continue;
+    }
+    echo "Even: $num <br>";
+}
+echo "<br>";
+
+
+echo "Stop at 7 (using BREAK):<br>";
+foreach ($numbers as $num) {
+    if ($num == 7) {
+        echo "Loop stopped at $num <br>";
+        break;
+    }
+    echo "Number: $num <br>";
+}
 ?>
