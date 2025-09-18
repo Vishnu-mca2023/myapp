@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drag & Drop Demo</title>
+</head>
+<body>
+  <h2>Drag & Drop Demo</h2>
+
+  <div id="dragItem" draggable="true">Drag me</div>
+  <br>
+  <div id="dropZone">Drop here</div>
+  <p id="dragLog">Event log will appear here</p>
+
+  <script>
+    const dragItem = document.getElementById("dragItem");
+    const dropZone = document.getElementById("dropZone");
+    const dragLog = document.getElementById("dragLog");
+
+    // When dragging starts
+    dragItem.ondragstart = () => {
+      dragLog.textContent = "Drag started!";
+    };
+
+    // While dragging
+    dragItem.ondrag = () => {
+      dragLog.textContent = "Dragging...";
+    };
+
+    // While dragging over drop zone
+    dropZone.ondragover = (e) => {
+      e.preventDefault(); // needed to allow drop
+      dragLog.textContent = "Dragging over drop zone...";
+    };
+
+    // When item is dropped
+    dropZone.ondrop = (e) => {
+      e.preventDefault(); // prevent default behavior
+      dragLog.textContent = "Dropped!";
+      dropZone.textContent = "Item dropped!";
+    };
+  </script>
+</body>
+</html>
