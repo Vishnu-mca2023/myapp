@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clipboard Events Demo</title>
+  
+</head>
+<body>
+  <h2>Clipboard Events Demo</h2>
+
+  <input type="text" id="clipInput" value="">
+  <p id="log"></p>
+
+  <script>
+    const clipInput = document.getElementById("clipInput");
+    const log = document.getElementById("log");
+
+    // When user copies text
+    clipInput.oncopy = () => {
+      log.textContent = " copied the text!";
+    };
+
+    // When user cuts text
+    clipInput.oncut = () => {
+      log.textContent = "cut the text!";
+    };
+
+    // When user pastes text
+    clipInput.onpaste = () => {
+      log.textContent = " pasted text!";
+    };
+  </script>
+</body>
+</html>

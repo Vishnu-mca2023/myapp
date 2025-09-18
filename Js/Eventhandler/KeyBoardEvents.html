@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keyboard Events Example</title>
+</head>
+<body>
+  <h2>Keyboard Events Demo</h2>
+
+  <input type="text" id="myInput" placeholder="Type something here" style="width:250px; padding:5px;">
+  <p id="log"></p>
+
+  <script>
+    const input = document.getElementById("myInput");
+    const log = document.getElementById("log");
+
+    // onkeydown
+    input.onkeydown = (e) => {
+      log.textContent =  e.key;
+    };
+
+    // onkeypress 
+    input.onkeypress = (e) => {
+      log.textContent = "Key Pressed  " + e.key;
+    };
+
+    // onkeyup
+    input.onkeyup = (e) => {
+      log.textContent = e.key;
+    };
+  </script>
+</body>
+</html>

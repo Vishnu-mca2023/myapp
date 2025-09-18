@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Event Example</title>
+</head>
+<body>
+  <h2>Custom Event Demo</h2>
+  <button id="greetBtn">Greet</button>
+
+  <script>
+    // 1️⃣ Create a custom event named 'greet'
+    const greetEvent = new Event('greet');
+
+    // 2️⃣ Add an event listener for the custom event
+    document.addEventListener('greet', () => {
+      console.log('👋 Hello! Custom event fired.');
+    });
+
+    // 3️⃣ Dispatch the event when the button is clicked
+    document.getElementById('greetBtn').addEventListener('click', () => {
+      document.dispatchEvent(greetEvent);
+    });
+  </script>
+</body>
+</html>

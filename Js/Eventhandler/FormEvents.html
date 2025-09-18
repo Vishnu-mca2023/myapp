@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Events Example</title>
+</head>
+<body>
+  <h2>Form Events Demo</h2>
+
+  <form id="myForm">
+    <input type="text" id="username" placeholder="Enter your name">
+    <br><br>
+    <input type="password" id="password" placeholder="Enter password">
+    <br><br>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+  <p id="log"></p>
+
+  <script>
+    const form = document.getElementById("myForm");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const log = document.getElementById("log");
+
+    // onsubmit
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      log.textContent = "Form Submitted!";
+    };
+
+    // onreset
+    form.onreset = () => {
+      log.textContent = "Form Reset!";
+    };
+
+    // onfocus
+    username.onfocus = () => {
+      log.textContent = "Username box got focus!";
+    };
+
+    // onblur
+    username.onblur = () => {
+      log.textContent = "Username box lost focus!";
+    };
+
+    // onchange
+    password.onchange = () => {
+      log.textContent = "Password changed!";
+    };
+
+    // oninput
+    username.oninput = () => {
+      log.textContent = "Typing: " + username.value;
+    };
+  </script>
+</body>
+</html>
