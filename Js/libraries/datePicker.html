@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pikaday Date Picker Example</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+</head>
+<body>
+
+  <h2>Select a Date</h2>
+  <input type="text" id="datepicker">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script>
+    const picker = new Pikaday({
+      field: document.getElementById("datepicker"),
+      format: "YYYY-MM-DD", 
+      onSelect: function(date) {
+        console.log("Selected date: " + picker.toString());
+      }
+    });
+  </script>
+
+</body>
+</html>

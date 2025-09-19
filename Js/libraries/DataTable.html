@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DataTables Example</title>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+  <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+</head>
+<body>
+
+  <table id="myTable" class="display">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vishnu</td>
+        <td>Developer</td>
+        <td>India</td>
+        <td>23</td>
+        <td>2022/01/15</td>
+      </tr>
+      <tr>
+        <td>Ram</td>
+        <td>Designer</td>
+        <td>USA</td>
+        <td>28</td>
+        <td>2021/07/10</td>
+      </tr>
+      <tr>
+        <td>Joe</td>
+        <td>Manager</td>
+        <td>UAE</td>
+        <td>30</td>
+        <td>2019/03/05</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Initialize DataTable
+    $(document).ready(function () {
+      $('#myTable').DataTable();
+    });
+  </script>
+
+</body>
+</html>
