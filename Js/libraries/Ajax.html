@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Events Table with ECharts</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body>
+
+  <label>Start Date: </label>
+  <input type="date" id="startDate">
+  <label>End Date: </label>
+  <input type="date" id="endDate">
+  <button onclick="filterData()">Search</button>
+
+  <h3>Results:</h3>
+  <table id="result" class="display">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Event Name</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Events Chart:</h3>
+  <div id="chart" style="width: 600px; height: 400px;"></div>
+
+  <script>
+    class DataFetcher {
+      constructor(url) {
+        this.url = url;
+      }
+
+      async fetchData() {
+        const response = await fetch(this.url); 
+        return await response.json();
+      }
+
+      async filterByDate(start, end) {
+        const data = await this.fetchData();
+        return data.filter(item => item.date >= start && item.date <= end);
+      }
+    }
+
+    const fetcher = new DataFetcher("data.json");
+    let dataTable; 
+    let chart = echarts.init(document.getElementById('chart'));
+
+    async function filterData() {
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+
+      if (!startDate || !endDate) {
+        alert("Please select both start and end dates.");
+        return;
+      }
+
+      const results = await fetcher.filterByDate(startDate, endDate);
+
+      if (!dataTable) {
+        dataTable = new DataTable("#result", {
+          data: results,
+          columns: [
+            { data: "id" },
+            { data: "name" },
+            { data: "date" }
+          ]
+        });
+      } else {
+        dataTable.clear();
+        dataTable.rows.add(results);
+        dataTable.draw();
+      }
+
+      const dateCount = {};
+      results.forEach(item => {
+        dateCount[item.date] = (dateCount[item.date] || 0) + 1;
+      });
+
+      const dates = Object.keys(dateCount).sort();
+      const counts = dates.map(date => dateCount[date]);
+
+      const option = {
+        title: { text: 'Number of Events by Date' },
+        tooltip: {},
+        xAxis: { type: 'category', data: dates },
+        yAxis: { type: 'value' },
+        series: [{
+          type: 'bar',
+          data: counts,
+          color: '#5470C6'
+        }]
+      };
+
+      chart.setOption(option);
+    }
+  </script>
+</body>
+</html> 
+
+
